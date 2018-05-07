@@ -1,19 +1,14 @@
 package com.android.popularmovies;
 
-import android.animation.ObjectAnimator;
-import android.animation.TimeInterpolator;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.view.ViewTreeObserver;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -23,8 +18,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView releaseDateTextView;
     private TextView plotSynopsisTextView;
     private ImageView imageView;
-    private RatingBar ratingBarView;
-    private FrameLayout frameLayout;
+    private TextView voteAverageTextView;
+    private RelativeLayout relativeLayout;
     private ColorDrawable colorDrawable;
     private static final String POSTER_PATH = "http://image.tmdb.org/t/p/w185/";
 
@@ -33,8 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Setting details screen layout
         setContentView(R.layout.activity_details_view);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //retrieves the thumbnail data
         Bundle bundle = getIntent().getExtras();
         String title = bundle.getString("title");
@@ -47,8 +41,8 @@ public class DetailsActivity extends AppCompatActivity {
         titleTextView.setText(Html.fromHtml(title));
         releaseDateTextView = (TextView) findViewById(R.id.releasedate);
         releaseDateTextView.setText(Html.fromHtml(releaseDate));
-        ratingBarView = (RatingBar) findViewById(R.id.voteaverage);
-        ratingBarView.setRating(Float.parseFloat(vote));
+        voteAverageTextView = (TextView) findViewById(R.id.voteaverage);
+        voteAverageTextView.setText(String.valueOf(vote)+"/"+"10");
         plotSynopsisTextView = (TextView) findViewById(R.id.plotsynopsis);
         plotSynopsisTextView.setText(Html.fromHtml(synopsis));
         //Set image url
@@ -58,13 +52,21 @@ public class DetailsActivity extends AppCompatActivity {
                 .fit()
                 .into(imageView);
         //Set the background color to black
-        frameLayout = (FrameLayout) findViewById(R.id.detail_background);
+        relativeLayout = (RelativeLayout) findViewById(R.id.detail_background);
         colorDrawable = new ColorDrawable(Color.BLACK);
-        frameLayout.setBackground(colorDrawable);
+        relativeLayout.setBackground(colorDrawable);
     }
 
     @Override
-    public void onBackPressed() {
-        finish();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
+
 }

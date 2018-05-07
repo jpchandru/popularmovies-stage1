@@ -20,8 +20,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailsActivity"
+            android:label="@string/details_name"
             android:theme="@style/Transparent"
+            android:parentActivityName=".GridViewActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".GridViewActivity"/>
             />
+        </activity>
     </application>
 
 </manifest>

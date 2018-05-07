@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.android.popularmovies.adapter.GridViewAdapter;
 import com.android.popularmovies.model.GridItem;
@@ -28,7 +28,7 @@ public class GridViewActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private GridViewAdapter mGridAdapter;
     private GridItem[] mMovieData;
-    private RelativeLayout relativeLayout;
+    private ConstraintLayout relativeLayout;
     private ColorDrawable colorDrawable;
 
     @Override
@@ -48,7 +48,7 @@ public class GridViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(GridViewActivity.this, DetailsActivity.class);
                 ImageView imageView = (ImageView) v.findViewById(R.id.grid_item_image);
                 //Set the background color to black
-                relativeLayout = (RelativeLayout) findViewById(R.id.activity_background);
+                relativeLayout = (ConstraintLayout) findViewById(R.id.activity_background);
                 colorDrawable = new ColorDrawable(Color.BLACK);
                 relativeLayout.setBackground(colorDrawable);
                 //Pass the movie data params to DetailsActivity
