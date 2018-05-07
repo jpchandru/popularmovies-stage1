@@ -12,24 +12,25 @@ import java.util.Scanner;
 public class NetworkUtils {
 
     //Constants to build URL String for movies
-    //* Reference: Lesson02_03 Exercise build URL
-    final static String MOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/popular";
+    final static String MOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
+    static String paramPath = "";
     final static String PARAM_QUERY = "api_key";
-    final static String PRAM_SORT = "sort";
 
-    //Will need to provide YOUR OWN API_Key
+    //YOUR OWN API_Key
     final static String API_KEY = "869ba8ce18967f203b2686832bc98be9";
 
-    //Constants to build URL String for movie poster
-    final static String MOVIEDB_POSTER_BASE_URL = "http://imge.tmdb.org/t/p/";
-    final static String PARAM_SIZE = "w185//";
-    final static String IMAGE_REF = "/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg";
-
-    //* Reference: Lesson 02_03
-    public static URL buildUrl(String movieDBSearchQuery){
+    public static URL buildUrl(String movieDBSearchCriteria){
         //*** CURRENTLY movieDBSearchQuery is not used until I need to put a parameter
+        switch (movieDBSearchCriteria) {
+            case "popular" : paramPath = MovieSorter.popular.name();
+                             break;
+            case "top_rated" : paramPath = MovieSorter.top_rated.name();
+                               break;
+            default: paramPath = MovieSorter.popular.name();
+                     break;
+        }
 
-        Uri builtUri = Uri.parse(MOVIEDB_BASE_URL).buildUpon()
+        Uri builtUri = Uri.parse(MOVIEDB_BASE_URL+paramPath).buildUpon()
                 .appendQueryParameter(PARAM_QUERY, API_KEY)
                 .build();
 
