@@ -9,8 +9,10 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private TextView titleTextView;
@@ -44,7 +46,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         titleTextView = (TextView) findViewById(R.id.title);
         titleTextView.setText(Html.fromHtml(title));
         releaseDateTextView = (TextView) findViewById(R.id.releasedate);
-        releaseDateTextView.setText(Html.fromHtml(releaseDate));
+        releaseDateTextView.setText(Html.fromHtml(formatDate(releaseDate)));
         voteAverageTextView = (TextView) findViewById(R.id.voteaverage);
         voteAverageTextView.setText(String.valueOf(vote)+"/"+"10");
         plotSynopsisTextView = (TextView) findViewById(R.id.plotsynopsis);
@@ -71,6 +73,27 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Formatting Date
+     * @param dateStr
+     * @return DateString
+     */
+    private String formatDate(String dateStr){
+        String inputPattern = "yyyy-MM-dd";
+        String outputPattern = "MMM d, yyyy";
+        SimpleDateFormat simpleDateInputFormat, simpleDateOutputFormat;
+        try{
+            simpleDateInputFormat = new SimpleDateFormat(inputPattern);
+            Date date = simpleDateInputFormat.parse(dateStr);
+            simpleDateOutputFormat = new SimpleDateFormat(outputPattern);
+            dateStr = simpleDateOutputFormat.format(date);
+            return dateStr;
+        }catch (ParseException pe){
+
+        }
+        return null;
     }
 
 }

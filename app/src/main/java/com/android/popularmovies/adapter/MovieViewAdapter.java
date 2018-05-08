@@ -31,7 +31,6 @@ public class MovieViewAdapter extends ArrayAdapter<MovieItem> {
         this.mMovieData = mMovieDatas;
     }
 
-
     /**
      * Updates movie grid data and refresh movie grid items.
      *
