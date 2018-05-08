@@ -1,6 +1,6 @@
 package com.android.popularmovies.utilities;
 
-import com.android.popularmovies.model.GridItem;
+import com.android.popularmovies.model.MovieItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,16 +18,16 @@ public class JsonUtils {
     private static String MOVIE_RELEASE_DATE = "release_date";
 
 
-    public static GridItem[] parseMovieJson(String json) throws JSONException {
+    public static MovieItem[] parseMovieJson(String json) throws JSONException {
 
         JSONObject movieDetails = new JSONObject(json);
         JSONArray moviesResults = movieDetails.getJSONArray("results");
 
-        GridItem[] movieArray = new GridItem[moviesResults.length()];
+        MovieItem[] movieArray = new MovieItem[moviesResults.length()];
 
         //loop through results array, create movie object and return in MovieArray
         for (int i = 0; i <moviesResults.length(); i++){
-            GridItem movie = new GridItem();
+            MovieItem movie = new MovieItem();
             JSONObject movieData = moviesResults.getJSONObject(i);
 
             movieArray[i] = createMovieObject(movieData);
@@ -36,9 +36,9 @@ public class JsonUtils {
         return movieArray;
     }
 
-    private static GridItem createMovieObject(JSONObject movieData){
+    private static MovieItem createMovieObject(JSONObject movieData){
 
-        GridItem movie = new GridItem();
+        MovieItem movie = new MovieItem();
 
         //sets movie data points
         movie.setmId(movieData.optInt(MOVIE_ID));

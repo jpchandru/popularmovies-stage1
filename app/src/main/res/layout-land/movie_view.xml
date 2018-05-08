@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_background"
-    tools:context=".GridViewActivity"
+    tools:context=".MovieViewActivity"
     android:background="#000">
 
     <GridView
-        android:id="@+id/gridView"
+        android:id="@+id/movieView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"

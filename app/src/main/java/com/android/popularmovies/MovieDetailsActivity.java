@@ -3,7 +3,6 @@ package com.android.popularmovies;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.MenuItem;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-public class DetailsActivity extends AppCompatActivity {
+public class MovieDetailsActivity extends AppCompatActivity {
     private TextView titleTextView;
     private TextView releaseDateTextView;
     private TextView plotSynopsisTextView;
@@ -22,20 +21,25 @@ public class DetailsActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private ColorDrawable colorDrawable;
     private static final String POSTER_PATH = "http://image.tmdb.org/t/p/w185/";
+    private static final String TITLE = "title";
+    private static final String RELEASEDATE = "releaseDate";
+    private static final String VOTEAVERAGE = "voteAverage";
+    private static final String POLYSYNOPSIS = "plotSynopsis";
+    private static final String IMAGE = "image";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Setting details screen layout
-        setContentView(R.layout.activity_details_view);
+        setContentView(R.layout.movie_details_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //retrieves the thumbnail data
         Bundle bundle = getIntent().getExtras();
-        String title = bundle.getString("title");
-        String releaseDate = bundle.getString("releaseDate");
-        String vote = bundle.getString("voteAverage");
-        String synopsis = bundle.getString("plotSynopsis");
-        String image = bundle.getString("image");
+        String title = bundle.getString(TITLE);
+        String releaseDate = bundle.getString(RELEASEDATE);
+        String vote = bundle.getString(VOTEAVERAGE);
+        String synopsis = bundle.getString(POLYSYNOPSIS);
+        String image = bundle.getString(IMAGE);
         //initialize and set the image description
         titleTextView = (TextView) findViewById(R.id.title);
         titleTextView.setText(Html.fromHtml(title));
@@ -46,7 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
         plotSynopsisTextView = (TextView) findViewById(R.id.plotsynopsis);
         plotSynopsisTextView.setText(Html.fromHtml(synopsis));
         //Set image url
-        imageView = (ImageView) findViewById(R.id.grid_item_image);
+        imageView = (ImageView) findViewById(R.id.poster_image);
         Picasso.with(this)
                 .load(POSTER_PATH.concat(image))
                 .fit()

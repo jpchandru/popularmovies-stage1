@@ -1,6 +1,6 @@
 package com.android.popularmovies.model;
 
-public class GridItem {
+public class MovieItem {
 
     private int mId;
     private String mTitle;

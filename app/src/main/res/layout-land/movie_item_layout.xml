@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     >
     <ImageView
-        android:id="@+id/grid_item_image"
+        android:id="@+id/poster_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="50"

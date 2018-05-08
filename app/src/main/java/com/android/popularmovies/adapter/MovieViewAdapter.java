@@ -2,49 +2,43 @@ package com.android.popularmovies.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.android.popularmovies.R;
-import com.android.popularmovies.model.GridItem;
+import com.android.popularmovies.model.MovieItem;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+public class MovieViewAdapter extends ArrayAdapter<MovieItem> {
 
-public class GridViewAdapter extends ArrayAdapter<GridItem> {
-
-    //private final ColorMatrixColorFilter grayscaleFilter;
     private Context mContext;
     private int layoutResourceId;
-    private GridItem[] mGridData = null;
+    private MovieItem[] mMovieData = null;
     private static final String POSTER_PATH = "http://image.tmdb.org/t/p/w185/";
 
-    public GridViewAdapter(Context mContext, int layoutResourceId) {
+    public MovieViewAdapter(Context mContext, int layoutResourceId) {
         super(mContext, layoutResourceId);
         this.layoutResourceId = layoutResourceId;
         this.mContext = mContext;
     }
 
-    public GridViewAdapter(Context mContext, int layoutResourceId, GridItem[] mGridDatas) {
-        super(mContext, layoutResourceId, mGridDatas);
+    public MovieViewAdapter(Context mContext, int layoutResourceId, MovieItem[] mMovieDatas) {
+        super(mContext, layoutResourceId, mMovieDatas);
         this.layoutResourceId = layoutResourceId;
         this.mContext = mContext;
-        this.mGridData = mGridDatas;
+        this.mMovieData = mMovieDatas;
     }
 
 
     /**
-     * Updates grid data and refresh grid items.
+     * Updates movie grid data and refresh movie grid items.
      *
-     * @param mGridData
+     * @param mMovieData
      */
-    public void setGridData(GridItem[] mGridData) {
-        this.mGridData = mGridData;
+    public void setGridData(MovieItem[] mMovieData) {
+        this.mMovieData = mMovieData;
         notifyDataSetChanged();
     }
 
@@ -57,29 +51,21 @@ public class GridViewAdapter extends ArrayAdapter<GridItem> {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
             holder = new ViewHolder();
-            //holder.titleTextView = (TextView) row.findViewById(R.id.grid_item_title);
-            holder.imageView = (ImageView) row.findViewById(R.id.grid_item_image);
+            holder.imageView = (ImageView) row.findViewById(R.id.poster_image);
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
         }
-
-        GridItem item = mGridData[position];
-        //holder.titleTextView.setText(Html.fromHtml(item.getmTitle()));
-
-        if (mGridData != null) {
+        if (mMovieData != null) {
             Picasso.with(mContext)
-                    .load(POSTER_PATH.concat(mGridData[position].getmPoster()))
+                    .load(POSTER_PATH.concat(mMovieData[position].getmPoster()))
                     .fit()
                     .into(holder.imageView);
         }
-
-        //Picasso.with(mContext).load(item.getmPoster()).into(holder.imageView);
         return row;
     }
 
     static class ViewHolder {
-        TextView titleTextView;
         ImageView imageView;
     }
 }

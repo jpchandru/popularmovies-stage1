@@ -16,37 +16,37 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.android.popularmovies.adapter.GridViewAdapter;
-import com.android.popularmovies.model.GridItem;
+import com.android.popularmovies.adapter.MovieViewAdapter;
+import com.android.popularmovies.model.MovieItem;
 import com.android.popularmovies.utilities.JsonUtils;
 import com.android.popularmovies.utilities.MovieSorter;
 import com.android.popularmovies.utilities.NetworkUtils;
 import java.net.URL;
 
-public class GridViewActivity extends AppCompatActivity {
-    private GridView mGridView;
+public class MovieViewActivity extends AppCompatActivity {
+    private GridView mMovieGridView;
     private ProgressBar mProgressBar;
-    private GridViewAdapter mGridAdapter;
-    private GridItem[] mMovieData;
+    private MovieViewAdapter mMovieViewAdapter;
+    private MovieItem[] mMovieData;
     private ConstraintLayout relativeLayout;
     private ColorDrawable colorDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gridview);
-        mGridView = (GridView) findViewById(R.id.gridView);
+        setContentView(R.layout.movie_view);
+        mMovieGridView = (GridView) findViewById(R.id.movieView);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         //Initialize with empty data
-        mGridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout);
-        mGridView.setAdapter(mGridAdapter);
+        mMovieViewAdapter = new MovieViewAdapter(this, R.layout.movie_item_layout);
+        mMovieGridView.setAdapter(mMovieViewAdapter);
         //Grid view click event
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mMovieGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 //Get item at position
-                GridItem item = (GridItem) parent.getItemAtPosition(position);
-                Intent intent = new Intent(GridViewActivity.this, DetailsActivity.class);
-                ImageView imageView = (ImageView) v.findViewById(R.id.grid_item_image);
+                MovieItem item = (MovieItem) parent.getItemAtPosition(position);
+                Intent intent = new Intent(MovieViewActivity.this, MovieDetailsActivity.class);
+                ImageView imageView = (ImageView) v.findViewById(R.id.poster_image);
                 //Set the background color to black
                 relativeLayout = (ConstraintLayout) findViewById(R.id.activity_background);
                 colorDrawable = new ColorDrawable(Color.BLACK);
@@ -66,9 +66,9 @@ public class GridViewActivity extends AppCompatActivity {
     }
 
     //Downloading data asynchronously
-    public class AsyncHttpTaskForMovieDataDownload extends AsyncTask<URL, Void, GridItem[]> {
+    public class AsyncHttpTaskForMovieDataDownload extends AsyncTask<URL, Void, MovieItem[]> {
         @Override
-        protected GridItem[] doInBackground(URL... urls) {
+        protected MovieItem[] doInBackground(URL... urls) {
             URL searchUrl = urls[0];
             String movieSearchResults;
             try {
@@ -81,15 +81,15 @@ public class GridViewActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(GridItem[] gridItems) {
+        protected void onPostExecute(MovieItem[] gridItems) {
             // Download complete. Lets update UI
             if (gridItems != null && gridItems.length > 0) {
-                mGridAdapter = new GridViewAdapter(GridViewActivity.this, R.layout.grid_item_layout, gridItems);
-                mGridAdapter.setGridData(gridItems);
-                mGridView.setAdapter(mGridAdapter);
-                mGridAdapter.notifyDataSetChanged();
+                mMovieViewAdapter = new MovieViewAdapter(MovieViewActivity.this, R.layout.movie_item_layout, gridItems);
+                mMovieViewAdapter.setGridData(gridItems);
+                mMovieGridView.setAdapter(mMovieViewAdapter);
+                mMovieViewAdapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(GridViewActivity.this, "Failed to retrieve data!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MovieViewActivity.this, "Failed to retrieve data!", Toast.LENGTH_SHORT).show();
             }
             //Hide progressbar
             mProgressBar.setVisibility(View.GONE);

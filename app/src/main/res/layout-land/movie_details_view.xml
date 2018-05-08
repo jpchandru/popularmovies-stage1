@@ -8,7 +8,7 @@
     android:paddingTop="10dp">
 
     <ImageView
-        android:id="@+id/grid_item_image"
+        android:id="@+id/poster_image"
         android:layout_width="170dp"
         android:layout_height="300dp"
         android:layout_gravity="top|left"
@@ -22,7 +22,7 @@
         android:layout_height="75dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/grid_item_image"
+        android:layout_toRightOf="@+id/poster_image"
         android:background="#00bfa5">
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_gravity="top|center"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/grid_item_image"
+            android:layout_toRightOf="@+id/poster_image"
             android:scaleType="fitCenter"
             android:textColor="#fff"
             android:textSize="30sp"
@@ -45,7 +45,7 @@
         android:layout_below="@+id/titleSection"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/grid_item_image">
+        android:layout_toRightOf="@+id/poster_image">
         <LinearLayout
             android:id="@+id/infoSection"
             android:layout_width="match_parent"
@@ -67,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="125dp"
+                android:layout_marginLeft="125dp"
                 android:layout_marginTop="-24dp"
                 android:layout_toRightOf="@+id/releaseDateLabel"
                 android:textColor="#fff"
