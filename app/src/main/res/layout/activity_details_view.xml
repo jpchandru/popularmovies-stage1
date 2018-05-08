@@ -7,14 +7,12 @@
     android:orientation="vertical"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-
     <LinearLayout
         android:id="@+id/titleSection"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
         android:background="#00bfa5">
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -26,7 +24,6 @@
             android:textSize="30sp"
             android:textStyle="bold" />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/imageSection"
         android:layout_width="170dp"
@@ -35,27 +32,15 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
-
         <ImageView
             android:id="@+id/grid_item_image"
             android:layout_width="170dp"
             android:layout_height="300dp"
             android:layout_below="@+id/title"
             android:layout_gravity="top|left"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/movie_poster_content_description"/>
     </LinearLayout>
-
-            <!--<TextView-->
-                <!--android:id="@+id/title"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:layout_gravity="top|center"-->
-                <!--android:textColor="#fff"-->
-                <!--android:textSize="18dp"-->
-
-        <!--android:textStyle="bold" />-->
-
     <LinearLayout
         android:id="@+id/infoSection"
         android:layout_width="match_parent"
@@ -65,7 +50,6 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/imageSection"
         android:orientation="vertical">
-
         <TextView
             android:id="@+id/releaseDateLabel"
             android:layout_width="wrap_content"
@@ -75,7 +59,6 @@
             android:textColor="#fff"
             android:textSize="18dp"
             android:textStyle="bold" />
-
         <TextView
             android:id="@+id/releasedate"
             android:layout_width="wrap_content"
@@ -84,7 +67,6 @@
             android:layout_toRightOf="@+id/releaseDateLabel"
             android:textColor="#fff"
             android:textSize="18dp" />
-
         <TextView
             android:id="@+id/voteaverage"
             android:layout_width="wrap_content"
@@ -92,11 +74,7 @@
             android:layout_marginTop="40dp"
             android:textColor="#fff"
             android:textSize="18dp" />
-
-
     </LinearLayout>
-
-
     <FrameLayout
         android:id="@+id/TextSection"
         android:layout_width="match_parent"
@@ -104,14 +82,12 @@
         android:layout_below="@+id/imageSection"
         android:layout_margin="15dp"
         android:orientation="vertical">
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
-
             <TextView
                 android:id="@+id/plotsynopsis"
                 android:layout_width="wrap_content"
@@ -124,5 +100,4 @@
                 android:textSize="18dp" />
         </ScrollView>
     </FrameLayout>
-
 </RelativeLayout>

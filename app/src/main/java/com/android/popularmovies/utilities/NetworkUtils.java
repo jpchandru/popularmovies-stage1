@@ -10,18 +10,14 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class NetworkUtils {
+    private final static String MOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
+    private static String paramPath = "";
+    private final static String PARAM_QUERY = "api_key";
+    //API_Key
+    private final static String API_KEY = "869ba8ce18967f203b2686832bc98be9";
 
-    //Constants to build URL String for movies
-    final static String MOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
-    static String paramPath = "";
-    final static String PARAM_QUERY = "api_key";
-
-    //YOUR OWN API_Key
-    final static String API_KEY = "869ba8ce18967f203b2686832bc98be9";
-
-    public static URL buildUrl(String movieDBSearchCriteria){
-        //*** CURRENTLY movieDBSearchQuery is not used until I need to put a parameter
-        switch (movieDBSearchCriteria) {
+    public static URL buildUrl(String movieDataSearchQuery){
+        switch (movieDataSearchQuery) {
             case "popular" : paramPath = MovieSorter.popular.name();
                              break;
             case "top_rated" : paramPath = MovieSorter.top_rated.name();
@@ -29,24 +25,18 @@ public class NetworkUtils {
             default: paramPath = MovieSorter.popular.name();
                      break;
         }
-
         Uri builtUri = Uri.parse(MOVIEDB_BASE_URL+paramPath).buildUpon()
                 .appendQueryParameter(PARAM_QUERY, API_KEY)
                 .build();
-
         URL url = null;
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e){
             e.printStackTrace();
         }
-
         return url;
     }
 
-
-    //Helper Method
-    //* Reference: Lesson02-04
     public static String getResponseFromHTTPUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
@@ -65,6 +55,4 @@ public class NetworkUtils {
             urlConnection.disconnect();
         }
     }
-
-
 }
