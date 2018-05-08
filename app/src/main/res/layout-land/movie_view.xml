@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/activity_background"
     tools:context=".MovieViewActivity"
-    android:background="#000">
-
+    android:background="@color/black">
     <GridView
         android:id="@+id/movieView"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:backgroundTint="@android:color/black"/>
-
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 public class NetworkUtils {
     private final static String MOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
-    private static String paramPath = "";
     private final static String PARAM_QUERY = "api_key";
     //API_Key
     private final static String API_KEY = "869ba8ce18967f203b2686832bc98be9";
+    private static String paramPath = "";
 
     public static URL buildUrl(String movieDataSearchQuery){
         switch (movieDataSearchQuery) {
@@ -41,10 +41,8 @@ public class NetworkUtils {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
-
             Scanner scanner = new Scanner(in);
             scanner.useDelimiter("\\A");
-
             boolean hasInput = scanner.hasNext();
             if (hasInput) {
                 return scanner.next();

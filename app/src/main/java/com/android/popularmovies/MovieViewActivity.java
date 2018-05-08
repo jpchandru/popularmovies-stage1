@@ -96,7 +96,6 @@ public class MovieViewActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -118,7 +117,6 @@ public class MovieViewActivity extends AppCompatActivity {
             buildAndExecute(MovieSorter.popular.name());
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
