@@ -13,7 +13,8 @@ public class NetworkUtils {
     private final static String MOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
     private final static String PARAM_QUERY = "api_key";
     //API_Key
-    private final static String API_KEY = "869ba8ce18967f203b2686832bc98be9";
+    // TODO KEYIN APIKEY HERE
+    private final static String API_KEY = "";
     private static String paramPath = "";
 
     public static URL buildUrl(String movieDataSearchQuery){
